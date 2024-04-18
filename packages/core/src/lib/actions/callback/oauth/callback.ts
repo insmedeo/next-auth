@@ -318,7 +318,7 @@ export async function getUserAndAccount(
         ...tokens,
         provider: provider.id,
         type: provider.type,
-        providerAccountId: userFromProfile.id ?? crypto.randomUUID(),
+        providerAccountId: userFromProfile.id ?? crypto.createHash("sha256").update(user.email).digest("hex"),
       },
     }
   } catch (e) {
